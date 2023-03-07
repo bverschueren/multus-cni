@@ -60,7 +60,7 @@ var (
 	pollTimeout  = 45 * time.Second
 )
 
-//PrintVersionString ...
+// PrintVersionString ...
 func PrintVersionString() string {
 	return fmt.Sprintf("multus-cni version:%s, commit:%s, date:%s",
 		version, commit, date)
@@ -565,7 +565,7 @@ func getPod(kubeClient *k8s.ClientInfo, k8sArgs *types.K8sArgs, warnOnly bool) (
 	return pod, nil
 }
 
-//CmdAdd ...
+// CmdAdd ...
 func CmdAdd(args *skel.CmdArgs, exec invoke.Exec, kubeClient *k8s.ClientInfo) (cnitypes.Result, error) {
 	n, err := types.LoadNetConf(args.StdinData)
 	logging.Debugf("CmdAdd: %v, %v, %v", args, exec, kubeClient)
@@ -728,7 +728,7 @@ func CmdAdd(args *skel.CmdArgs, exec invoke.Exec, kubeClient *k8s.ClientInfo) (c
 	return result, nil
 }
 
-//CmdCheck ...
+// CmdCheck ...
 func CmdCheck(args *skel.CmdArgs, exec invoke.Exec, kubeClient *k8s.ClientInfo) error {
 	in, err := types.LoadNetConf(args.StdinData)
 	logging.Debugf("CmdCheck: %v, %v, %v", args, exec, kubeClient)
@@ -754,7 +754,7 @@ func CmdCheck(args *skel.CmdArgs, exec invoke.Exec, kubeClient *k8s.ClientInfo) 
 	return nil
 }
 
-//CmdDel ...
+// CmdDel ...
 func CmdDel(args *skel.CmdArgs, exec invoke.Exec, kubeClient *k8s.ClientInfo) error {
 	in, err := types.LoadNetConf(args.StdinData)
 	logging.Debugf("CmdDel: %v, %v, %v", args, exec, kubeClient)
@@ -773,7 +773,7 @@ func CmdDel(args *skel.CmdArgs, exec invoke.Exec, kubeClient *k8s.ClientInfo) er
 		if ok {
 			logging.Debugf("CmdDel: WARNING netns may not exist, netns: %s, err: %s", args.Netns, err)
 		} else {
-			return cmdErr(nil, "failed to open netns %q: %v", netns, err)
+			logging.Debugf("CmdDel: WARNING failed to open netns %q: %v", netns, err)
 		}
 	}
 
